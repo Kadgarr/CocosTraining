@@ -25,33 +25,43 @@ export class UnitController extends Component {
     private waypoints: TrackPointInfo[] = [];
     private currentTargetIndex: number = 0;
     private isMoving: boolean = false;
+    private gridManager: GridManager | null = null;
 
     /**
      * Инициализация юнита при спавне на трек
      */
     public init(
-        colorType: ColorType, 
-        capacity: number, 
-        waypoints: TrackPointInfo[], 
-        startIndex: number,
-        mat: Material
+    colorType: ColorType, 
+    capacity: number, 
+    waypoints: TrackPointInfo[], 
+    startIndex: number,
+    mat: Material,
+    gridManager?: GridManager
     ) {
         this.colorType = colorType;
         this.capacity = capacity;
         this.waypoints = waypoints;
         this.currentTargetIndex = startIndex;
+        if (gridManager) this.gridManager = gridManager;
 
         if (this.meshRenderer && mat) {
-            this.meshRenderer.material = mat;
+        this.meshRenderer.material = mat;
         }
 
         this.updateLabel();
-        
+    
         if (this.waypoints.length > 0) {
-            this.node.setPosition(this.waypoints[this.currentTargetIndex].position);
-            // Целимся в следующую точку
-            this.currentTargetIndex = (this.currentTargetIndex + 1) % this.waypoints.length;
-            this.isMoving = true;
+            const startPointInfo = this.waypoints[this.currentTargetIndex];
+            this.node.setPosition(startPointInfo.position);
+    
+            // Проверяем сбор сразу на стартовой точке
+            this.checkBlockCollection(startPointInfo);
+
+            // Если у юнита осталась емкость — взводим движение к следующей точке
+            if (this.capacity > 0) {
+             this.currentTargetIndex = (this.currentTargetIndex + 1) % this.waypoints.length;
+                this.isMoving = true;
+            }
         }
     }
 
@@ -69,9 +79,11 @@ export class UnitController extends Component {
         const moveDist = this.speed * dt;
 
         if (distance <= moveDist) {
-            // Достигли точки, мгновенно перемещаемся в неё
             this.node.setPosition(targetPos);
-            // Переходим к следующей точке по кругу
+    
+            // Поглощаем блоки при достижении вейпоинта
+            this.checkBlockCollection(targetInfo);
+
             this.currentTargetIndex = (this.currentTargetIndex + 1) % this.waypoints.length;
         } else {
             // Двигаемся к точке
@@ -104,4 +116,16 @@ export class UnitController extends Component {
             this.capacityLabel.string = this.capacity.toString();
         }
     }
+
+    private checkBlockCollection(pointInfo: TrackPointInfo) {
+    if (!this.gridManager || this.capacity <= 0) return;
+
+    while (this.capacity > 0 && this.gridManager.tryConsumeOuterBlock(pointInfo.side, pointInfo.gridIndex, this.colorType)) {
+        const isEmpty = this.consumeCapacity(1);
+        if (isEmpty) {
+            this.node.emit('unit-destroyed', this);
+            break;
+        }
+    }
+}
 }

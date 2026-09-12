@@ -106,22 +106,27 @@ export class TrackManager extends Component {
      * Спавн юнита на трек
      */
     public spawnUnit(colorType: ColorType, capacity: number): UnitController | null {
-        if (!this.canSpawnUnit()) return null;
+    if (!this.canSpawnUnit()) return null;
 
-        const unitNode = instantiate(this.unitPrefab);
-        unitNode.setParent(this.node);
+    const unitNode = instantiate(this.unitPrefab);
+    unitNode.setParent(this.node);
 
-        const unitComp = unitNode.getComponent(UnitController);
-        const mat = colorType === ColorType.WHITE ? this.whiteMaterial : this.blackMaterial;
+    const unitComp = unitNode.getComponent(UnitController);
+    const mat = colorType === ColorType.WHITE ? this.whiteMaterial : this.blackMaterial;
 
-        if (unitComp) {
-            unitComp.init(colorType, capacity, this.waypoints, 0, mat);
-            this.activeUnits.push(unitComp);
-            return unitComp;
-        }
+    if (unitComp) {
+        unitComp.init(colorType, capacity, this.waypoints, 0, mat, this.gridManager);
+        
+        unitNode.on('unit-destroyed', (unit: UnitController) => {
+            this.removeUnit(unit);
+        }, this);
 
-        return null;
+        this.activeUnits.push(unitComp);
+        return unitComp;
     }
+
+    return null;
+}
 
     /**
      * Удаление юнита с трека
@@ -140,4 +145,6 @@ export class TrackManager extends Component {
     private spawnTestUnit() {
         this.spawnUnit(ColorType.WHITE, 20);
     }
+
+    
 }

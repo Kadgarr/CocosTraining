@@ -111,4 +111,67 @@ export class GridManager extends Component {
             block.node.destroy();
         }
     }
+
+    /**
+ * Попытка поглотить крайний блок с указанной стороны и индекса
+ * @returns true, если блок был успешно поглощен
+ */
+public tryConsumeOuterBlock(side: TrackSide, index: number, colorType: ColorType): boolean {
+    let targetRow = -1;
+    let targetCol = -1;
+
+    switch (side) {
+        case TrackSide.BOTTOM: // Находим крайний нижний блок в столбце index
+            for (let r = this.rows - 1; r >= 0; r--) {
+                if (this.grid[r][index] !== null) {
+                    targetRow = r;
+                    targetCol = index;
+                    break;
+                }
+            }
+            break;
+
+        case TrackSide.TOP: // Находим крайний верхний блок в столбце index
+            for (let r = 0; r < this.rows; r++) {
+                if (this.grid[r][index] !== null) {
+                    targetRow = r;
+                    targetCol = index;
+                    break;
+                }
+            }
+            break;
+
+        case TrackSide.LEFT: // Находим крайний левый блок в строке index
+            for (let c = 0; c < this.cols; c++) {
+                if (this.grid[index][c] !== null) {
+                    targetRow = index;
+                    targetCol = c;
+                    break;
+                }
+            }
+            break;
+
+        case TrackSide.RIGHT: // Находим крайний правый блок в строке index
+            for (let c = this.cols - 1; c >= 0; c--) {
+                if (this.grid[index][c] !== null) {
+                    targetRow = index;
+                    targetCol = c;
+                    break;
+                }
+            }
+            break;
+    }
+
+    // Если нашли открытый крайний блок
+    if (targetRow !== -1 && targetCol !== -1) {
+        const block = this.grid[targetRow][targetCol];
+        if (block && block.colorType === colorType) {
+            block.node.destroy();
+            this.grid[targetRow][targetCol] = null;
+            return true;
+        }
+    }
+
+    return false;
+}
 }
