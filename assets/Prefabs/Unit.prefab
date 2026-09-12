@@ -32,10 +32,13 @@
       },
       {
         "__id__": 13
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 17
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -52,9 +55,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.8,
-      "y": 0.8,
-      "z": 0.8
+      "x": 0.5,
+      "y": 0.6,
+      "z": 0.5
     },
     "_mobility": 0,
     "_layer": 1073741824,
@@ -333,6 +336,31 @@
     "fileId": "bauv8lFf1Jg7uvzOtoxu07"
   },
   {
+    "__type__": "82b87ffr4VHkZo/rhYPn7Fs",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 16
+    },
+    "capacityLabel": {
+      "__id__": 5
+    },
+    "meshRenderer": {
+      "__id__": 8
+    },
+    "speed": 5,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "a8OT8JcmJOB5xGkbdfIxKb"
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -341,6 +369,7 @@
       "__id__": 0
     },
     "fileId": "9cLH6RtSRHuqauD2IHReOF",
+    "instance": null,
     "targetOverrides": null
   }
 ]
