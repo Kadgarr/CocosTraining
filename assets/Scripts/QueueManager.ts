@@ -35,7 +35,7 @@ export class QueueManager extends Component {
         const numColumns = 4;
         const unitsPerColumn = 3;
         const colors = [ColorType.WHITE, ColorType.BLACK];
-        const capacities = [10, 15, 20, 25]; // Возможные значения емкости
+        const capacity=20;
 
         this.columnsData = [];
 
@@ -44,11 +44,10 @@ export class QueueManager extends Component {
             for (let row = 0; row < unitsPerColumn; row++) {
                 // Случайный цвет и емкость
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                const randomCapacity = capacities[Math.floor(Math.random() * capacities.length)];
 
                 column.push({
                 colorType: randomColor,
-                capacity: randomCapacity
+                capacity: capacity
                 });
             }
         this.columnsData.push(column);

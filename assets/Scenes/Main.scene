@@ -374,7 +374,8 @@
     "rows": 26,
     "cols": 26,
     "spacing": 0.25,
-    "_id": "cbZP4zrApO0JjriM9DIl2B"
+    "consumeCooldown": 0.2,
+    "_id": "157zzKTNlI55eWeqjen/zW"
   },
   {
     "__type__": "cc.Node",

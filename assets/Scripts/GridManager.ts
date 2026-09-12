@@ -23,6 +23,12 @@ export class GridManager extends Component {
     @property
     public spacing: number = 1.1; // Расстояние между центрами блоков
 
+    @property
+    public consumeCooldown: number = 0.2; // Задержка (в секундах) между сбором блоков
+
+    // Хранилище времени последнего сбора для каждой линии
+    private lastConsumeTimeMap: Map<string, number> = new Map();
+
     // Двумерный массив сетки: [row][col]
     private grid: (BlockComponent | null)[][] = [];
 
@@ -112,66 +118,70 @@ export class GridManager extends Component {
         }
     }
 
-    /**
- * Попытка поглотить крайний блок с указанной стороны и индекса
- * @returns true, если блок был успешно поглощен
- */
-public tryConsumeOuterBlock(side: TrackSide, index: number, colorType: ColorType): boolean {
-    let targetRow = -1;
-    let targetCol = -1;
+    public tryConsumeOuterBlock(side: TrackSide, index: number, colorType: ColorType): boolean {
+        const key = `${side}_${index}`;
+        const now = Date.now();
+        const lastConsumeTime = this.lastConsumeTimeMap.get(key) || 0;
 
-    switch (side) {
-        case TrackSide.BOTTOM: // Находим крайний нижний блок в столбце index
-            for (let r = this.rows - 1; r >= 0; r--) {
-                if (this.grid[r][index] !== null) {
-                    targetRow = r;
-                    targetCol = index;
-                    break;
-                }
-            }
-            break;
-
-        case TrackSide.TOP: // Находим крайний верхний блок в столбце index
-            for (let r = 0; r < this.rows; r++) {
-                if (this.grid[r][index] !== null) {
-                    targetRow = r;
-                    targetCol = index;
-                    break;
-                }
-            }
-            break;
-
-        case TrackSide.LEFT: // Находим крайний левый блок в строке index
-            for (let c = 0; c < this.cols; c++) {
-                if (this.grid[index][c] !== null) {
-                    targetRow = index;
-                    targetCol = c;
-                    break;
-                }
-            }
-            break;
-
-        case TrackSide.RIGHT: // Находим крайний правый блок в строке index
-            for (let c = this.cols - 1; c >= 0; c--) {
-                if (this.grid[index][c] !== null) {
-                    targetRow = index;
-                    targetCol = c;
-                    break;
-                }
-            }
-            break;
-    }
-
-    // Если нашли открытый крайний блок
-    if (targetRow !== -1 && targetCol !== -1) {
-        const block = this.grid[targetRow][targetCol];
-        if (block && block.colorType === colorType) {
-            block.node.destroy();
-            this.grid[targetRow][targetCol] = null;
-            return true;
+        // Если прошло меньше времени, чем consumeCooldown — отменяем сбор
+        if (now - lastConsumeTime < this.consumeCooldown * 1000) {
+            return false;
         }
-    }
 
-    return false;
-}
+        let targetRow = -1;
+        let targetCol = -1;
+
+        switch (side) {
+            case TrackSide.BOTTOM: // Находим крайний нижний блок в столбце index (от r = rows - 1 к 0)
+                for (let r = this.rows - 1; r >= 0; r--) {
+                    if (this.grid[r][index] !== null) {
+                        targetRow = r;
+                        targetCol = index;
+                        break;
+                    }
+                }
+                break;
+
+            case TrackSide.TOP: // Находим крайний верхний блок в столбце index (от r = 0 к rows - 1)
+                for (let r = 0; r < this.rows; r++) {
+                    if (this.grid[r][index] !== null) {
+                        targetRow = r;
+                        targetCol = index;
+                        break;
+                    }
+                }
+                break;
+
+            case TrackSide.LEFT: // Находим крайний левый блок в строке index (от c = 0 к cols - 1)
+                for (let c = 0; c < this.cols; c++) {
+                    if (this.grid[index][c] !== null) {
+                        targetRow = index;
+                        targetCol = c;
+                        break;
+                    }
+                }
+                break;
+
+            case TrackSide.RIGHT: // Находим крайний правый блок в строке index (от c = cols - 1 к 0)
+                for (let c = this.cols - 1; c >= 0; c--) {
+                    if (this.grid[index][c] !== null) {
+                        targetRow = index;
+                        targetCol = c;
+                        break;
+                    }
+                }
+                break;
+        }
+
+        if (targetRow !== -1 && targetCol !== -1) {
+            const block = this.grid[targetRow][targetCol];
+            if (block && block.colorType === colorType) {
+                this.removeBlock(targetRow, targetCol);
+                this.lastConsumeTimeMap.set(key, now); // Запоминаем время сбора
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
