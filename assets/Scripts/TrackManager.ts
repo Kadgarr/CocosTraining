@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Prefab, instantiate, Vec3, Material } from 'cc';
+import { _decorator, Component, Node, Prefab, instantiate, Vec3, Material, Label } from 'cc';
 import { GridManager } from './GridManager';
 import { UnitController, TrackPointInfo } from './UnitController';
 import { ColorType, TrackSide } from './Types';
@@ -6,6 +6,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass('TrackManager')
 export class TrackManager extends Component {
+    
     @property(GridManager)
     public gridManager: GridManager = null!;
 
@@ -23,6 +24,9 @@ export class TrackManager extends Component {
 
     @property
     public maxActiveUnits: number = 5;
+    
+    @property(Label)
+    public slotCounterLabel: Label = null!;
 
     private waypoints: TrackPointInfo[] = [];
     private activeUnits: UnitController[] = [];
@@ -30,6 +34,7 @@ export class TrackManager extends Component {
     start() {
         this.scheduleOnce(() => {
         this.generateWaypoints();
+        this.updateSlotUI();
         // spawnTestUnit() больше не вызываем!
     }, 0);
 }
@@ -113,13 +118,14 @@ export class TrackManager extends Component {
     const mat = colorType === ColorType.WHITE ? this.whiteMaterial : this.blackMaterial;
 
     if (unitComp) {
-        unitComp.init(colorType, capacity, this.waypoints, 0, mat, this.gridManager);
+        unitComp.init(colorType, capacity, this.waypoints, 0, mat, this.gridManager, this);
         
         unitNode.on('unit-destroyed', (unit: UnitController) => {
             this.removeUnit(unit);
         }, this);
 
         this.activeUnits.push(unitComp);
+        this.updateSlotUI();
         return unitComp;
     }
 
@@ -144,5 +150,34 @@ export class TrackManager extends Component {
         this.spawnUnit(ColorType.WHITE, 20);
     }
 
-    
+
+        /** Вызывается, когда юнит потратил всю емкость (capacity <= 0) в пути */
+    public onUnitDiedByCapacity(unit: UnitController) {
+        this.removeActiveUnit(unit);
+        this.updateSlotUI(); // Возвращает свободный слот (например, 4/5 -> 5/5)
+    }
+
+    /** Вызывается, когда юнит дошел до конца пути */
+    public onUnitReachedEnd(unit: UnitController) {
+        this.removeActiveUnit(unit);
+        this.maxActiveUnits = Math.max(0, this.maxActiveUnits - 1); // Уменьшаем максимальный лимит
+        this.updateSlotUI(); // Изменяет лимит (например, 4/5 -> 4/4)
+    }
+
+    /** Вспомогательный метод удаления из списка активных юнитов */
+    private removeActiveUnit(unit: UnitController) {
+        const index = this.activeUnits.indexOf(unit);
+        if (index !== -1) {
+            this.activeUnits.splice(index, 1);
+        }
+    }
+
+    /** Обновление текста счетчика */
+    public updateSlotUI() {
+        if (this.slotCounterLabel) {
+            const availableSlots = Math.max(0, this.maxActiveUnits - this.activeUnits.length);
+            this.slotCounterLabel.string = `${availableSlots}/${this.maxActiveUnits}`;
+        }
+    }
+        
 }
