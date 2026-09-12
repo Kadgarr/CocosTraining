@@ -28,13 +28,11 @@ export class TrackManager extends Component {
     private activeUnits: UnitController[] = [];
 
     start() {
-        // Задержка на 1 кадр для гарантированной инициализации GridManager
         this.scheduleOnce(() => {
-            this.generateWaypoints();
-            // ТЕСТОВЫЙ СПАВН: спавним одного белого юнита для проверки движения
-            this.spawnTestUnit();
-        }, 0);
-    }
+        this.generateWaypoints();
+        // spawnTestUnit() больше не вызываем!
+    }, 0);
+}
 
     /**
      * Генерация вейпоинтов вокруг сетки по часовой стрелке
