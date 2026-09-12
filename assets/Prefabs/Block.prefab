@@ -45,9 +45,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.9,
-      "y": 0.4,
-      "z": 0.9
+      "x": 0.2,
+      "y": 0.6,
+      "z": 0.2
     },
     "_mobility": 0,
     "_layer": 1073741824,
@@ -132,14 +132,8 @@
     "__prefab": {
       "__id__": 6
     },
-    "colorType": 0,
-    "whiteMaterial": {
-      "__uuid__": "9f36efb1-7649-4379-8b99-b0c7262b0ba4",
-      "__expectedType__": "cc.Material"
-    },
-    "blackMaterial": {
-      "__uuid__": "9aadf10f-df69-4603-8d16-bd811333b785",
-      "__expectedType__": "cc.Material"
+    "meshRenderer": {
+      "__id__": 2
     },
     "_id": ""
   },
