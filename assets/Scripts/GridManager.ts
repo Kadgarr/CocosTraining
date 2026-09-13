@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Prefab, instantiate, Vec3, Material } from 'cc';
 import { BlockComponent } from './BlockComponent';
 import { ColorType, TrackSide } from './Types';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GridManager')
@@ -31,6 +32,8 @@ export class GridManager extends Component {
 
     // Двумерный массив сетки: [row][col]
     private grid: (BlockComponent | null)[][] = [];
+
+    private totalBlocks: number = 0;
 
     start() {
         this.generateGrid();
@@ -70,6 +73,8 @@ export class GridManager extends Component {
                 }
             }
         }
+
+        this.totalBlocks = this.rows * this.cols;
     }
 
     /**
@@ -111,11 +116,26 @@ export class GridManager extends Component {
      * Удаляет блок из массива и со сцены
      */
     public removeBlock(row: number, col: number) {
+
         const block = this.grid[row][col];
+
         if (block) {
+
             this.grid[row][col] = null;
             block.node.destroy();
+
+            this.totalBlocks--;
+
+            // Проверяем победу при каждом удалении блока
+            if (GameManager.instance) {
+                GameManager.instance.checkWin(this.totalBlocks);
+            }
         }
+    }
+
+    // --- Добавить публичный геттер ---
+    public getRemainingBlocksCount(): number {
+        return this.totalBlocks;
     }
 
     public tryConsumeOuterBlock(side: TrackSide, index: number, colorType: ColorType): boolean {

@@ -2,6 +2,7 @@ import { _decorator, Component, Node, Prefab, instantiate, Vec3, Material, Label
 import { GridManager } from './GridManager';
 import { UnitController, TrackPointInfo } from './UnitController';
 import { ColorType, TrackSide } from './Types';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('TrackManager')
@@ -162,6 +163,12 @@ export class TrackManager extends Component {
         this.removeActiveUnit(unit);
         this.maxActiveUnits = Math.max(0, this.maxActiveUnits - 1); // Уменьшаем максимальный лимит
         this.updateSlotUI(); // Изменяет лимит (например, 4/5 -> 4/4)
+
+        // Проверяем поражение после уменьшения вместимости трека
+        if (GameManager.instance) {
+            const remainingBlocks = this.gridManager ? this.gridManager.getRemainingBlocksCount() : 1;
+            GameManager.instance.checkLose(this.maxActiveUnits, this.activeUnits.length, remainingBlocks);
+        }
     }
 
     /** Вспомогательный метод удаления из списка активных юнитов */
