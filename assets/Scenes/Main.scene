@@ -191,8 +191,8 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 15,
-      "z": 6
+      "y": 20,
+      "z": 8
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -347,7 +347,7 @@
         "__id__": 68
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 77
@@ -573,7 +573,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 423.3463035019455,
+    "_orthoHeight": 640,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -2999,6 +2999,10 @@
     "__prefab": null,
     "blockPrefab": {
       "__uuid__": "0c785d7e-67b2-4758-aabe-ed158b57b68e",
+      "__expectedType__": "cc.Prefab"
+    },
+    "projectilePrefab": {
+      "__uuid__": "ce08b000-6796-4f73-97c9-18b5fca6f842",
       "__expectedType__": "cc.Prefab"
     },
     "whiteMaterial": {

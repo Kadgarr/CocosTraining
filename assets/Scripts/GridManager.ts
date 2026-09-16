@@ -2,12 +2,16 @@ import { _decorator, Component, Node, Prefab, instantiate, Vec3, Material } from
 import { BlockComponent } from './BlockComponent';
 import { ColorType, TrackSide } from './Types';
 import { GameManager } from './GameManager';
+import { Projectile } from './Projectile';
 const { ccclass, property } = _decorator;
 
 @ccclass('GridManager')
 export class GridManager extends Component {
     @property(Prefab)
     public blockPrefab: Prefab = null!;
+
+    @property(Prefab)
+    public projectilePrefab: Prefab = null!; // Префаб снаряда
 
     @property(Material)
     public whiteMaterial: Material = null!;
@@ -138,7 +142,7 @@ export class GridManager extends Component {
         return this.totalBlocks;
     }
 
-    public tryConsumeOuterBlock(side: TrackSide, index: number, colorType: ColorType): boolean {
+    public tryConsumeOuterBlock(side: TrackSide, index: number, colorType: ColorType, unitWorldPos: Vec3): boolean {
         const key = `${side}_${index}`;
         const now = Date.now();
         const lastConsumeTime = this.lastConsumeTimeMap.get(key) || 0;
@@ -196,12 +200,34 @@ export class GridManager extends Component {
         if (targetRow !== -1 && targetCol !== -1) {
             const block = this.grid[targetRow][targetCol];
             if (block && block.colorType === colorType) {
+                const blockWorldPos = block.node.worldPosition.clone();
+
+                // Спавним снаряд. Блок удалится по прилету (callback)
+                this.spawnProjectile(unitWorldPos, blockWorldPos, () => {
                 this.removeBlock(targetRow, targetCol);
+            });
                 this.lastConsumeTimeMap.set(key, now); // Запоминаем время сбора
                 return true;
             }
         }
 
         return false;
+    }
+
+    private spawnProjectile(startPos: Vec3, targetPos: Vec3, onHit: () => void) {
+        if (!this.projectilePrefab) {
+            onHit(); // Если префаб не прикреплен в инспекторе — удаляем мгновенно
+            return;
+        }
+
+        const projNode = instantiate(this.projectilePrefab);
+        projNode.setParent(this.node.parent);
+
+        const projComp = projNode.getComponent(Projectile);
+        if (projComp) {
+            projComp.launch(startPos, targetPos, 0.12, onHit);
+        } else {
+            onHit();
+        }
     }
 }

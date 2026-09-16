@@ -139,7 +139,9 @@ export class UnitController extends Component {
 
             if (!this.gridManager || this.capacity <= 0) return;
 
-            while (this.capacity > 0 && this.gridManager.tryConsumeOuterBlock(pointInfo.side, pointInfo.gridIndex, this.colorType)) {
+            // Берем текущую мировую позицию юнита для спавна снаряда
+            const unitPos = this.node.worldPosition;
+            while (this.capacity > 0 && this.gridManager.tryConsumeOuterBlock(pointInfo.side, pointInfo.gridIndex, this.colorType, unitPos)) {
                 const isEmpty = this.consumeCapacity(1);
                 if (isEmpty) {
                     this.onCapacityDepleted();
