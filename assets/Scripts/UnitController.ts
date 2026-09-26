@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, Vec3, Label, MeshRenderer, Material, Color } from 'cc';
 import { ColorType, TrackSide } from './Types';
 import { TrackManager } from './TrackManager';
+import { UnitSkin } from './UnitSkin';
 import type { GridManager } from './GridManager';
 const { ccclass, property } = _decorator;
 
@@ -40,7 +41,7 @@ export class UnitController extends Component {
         capacity: number, 
         waypoints: TrackPointInfo[], 
         startIndex: number,
-        mat: Material,
+        mat: Material | Material[],
         gridManager?: GridManager,
         trackManager?: TrackManager
         ) {
@@ -52,14 +53,11 @@ export class UnitController extends Component {
             if (gridManager) this.gridManager = gridManager;
             if (trackManager) this.trackManager = trackManager;
 
-            if (this.meshRenderer && mat) {
-            this.meshRenderer.material = mat;
-            }
+            // Материалы кролика (корпус, детали, блик) под цвет юнита
+            UnitSkin.apply(this.meshRenderer, mat);
 
-            // Цвет текста счетчика: белый для черных юнитов, черный для белых
-            if (this.capacityLabel) {
-                this.capacityLabel.color = colorType === ColorType.BLACK ? Color.WHITE : Color.BLACK;
-            }
+            // Число: белое у черных юнитов, черное у белых, с контрастной обводкой
+            UnitSkin.styleLabel(this.capacityLabel, colorType);
 
             this.updateLabel();
         

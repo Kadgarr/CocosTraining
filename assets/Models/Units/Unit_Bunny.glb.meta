@@ -1,0 +1,75 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "16f86aa7-b1d7-436e-ad2b-fa9f89b38342",
+  "files": [],
+  "subMetas": {
+    "b21bf": {
+      "importer": "gltf-mesh",
+      "uuid": "16f86aa7-b1d7-436e-ad2b-fa9f89b38342@b21bf",
+      "displayName": "",
+      "id": "b21bf",
+      "name": "Bunny.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 3196
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bdb2f": {
+      "importer": "gltf-scene",
+      "uuid": "16f86aa7-b1d7-436e-ad2b-fa9f89b38342@bdb2f",
+      "displayName": "",
+      "id": "bdb2f",
+      "name": "Unit_Bunny.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "16f86aa7-b1d7-436e-ad2b-fa9f89b38342@b21bf"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "16f86aa7-b1d7-436e-ad2b-fa9f89b38342@bdb2f"
+      ]
+    }
+  }
+}

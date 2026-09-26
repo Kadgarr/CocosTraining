@@ -55,9 +55,9 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
+      "x": 0.5,
+      "y": 0.6,
+      "z": 0.5
     },
     "_mobility": 0,
     "_layer": 1073741824,
@@ -93,27 +93,27 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 1.0338,
-      "z": 0.4252
+      "y": 1.2,
+      "z": 0
     },
     "_lrot": {
       "__type__": "cc.Quat",
-      "x": -0.573576436351046,
+      "x": -0.49999999999999994,
       "y": 0,
       "z": 0,
-      "w": 0.8191520442889918
+      "w": 0.8660254037844387
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.011,
-      "y": 0.011,
-      "z": 0.011
+      "x": 0.02,
+      "y": 0.02,
+      "z": 0.02
     },
     "_mobility": 0,
     "_layer": 33554432,
     "_euler": {
       "__type__": "cc.Vec3",
-      "x": -70,
+      "x": -60,
       "y": 0,
       "z": 0
     },
@@ -182,11 +182,11 @@
     "_isSystemFontUsed": true,
     "_spacingX": 0,
     "_isItalic": false,
-    "_isBold": true,
+    "_isBold": false,
     "_isUnderline": false,
     "_underlineHeight": 2,
     "_cacheMode": 0,
-    "_enableOutline": true,
+    "_enableOutline": false,
     "_outlineColor": {
       "__type__": "cc.Color",
       "r": 0,
@@ -194,7 +194,7 @@
       "b": 0,
       "a": 255
     },
-    "_outlineWidth": 3,
+    "_outlineWidth": 2,
     "_enableShadow": false,
     "_shadowColor": {
       "__type__": "cc.Color",
@@ -230,7 +230,7 @@
   },
   {
     "__type__": "cc.MeshRenderer",
-    "_name": "Bunny<ModelComponent>",
+    "_name": "Capsule<ModelComponent>",
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
@@ -242,15 +242,7 @@
     },
     "_materials": [
       {
-        "__uuid__": "0f290d6d-3820-48f6-accc-52a81c746ed0",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "4a12dc93-3ee8-45cb-bb36-c2d1da17bd01",
-        "__expectedType__": "cc.Material"
-      },
-      {
-        "__uuid__": "d4cdede0-aa52-4daa-a733-e23024e59858",
+        "__uuid__": "9f36efb1-7649-4379-8b99-b0c7262b0ba4",
         "__expectedType__": "cc.Material"
       }
     ],
@@ -259,11 +251,11 @@
       "__id__": 10
     },
     "_mesh": {
-      "__uuid__": "16f86aa7-b1d7-436e-ad2b-fa9f89b38342@b21bf",
+      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@801ec",
       "__expectedType__": "cc.Mesh"
     },
-    "_shadowCastingMode": 1,
-    "_shadowReceivingMode": 0,
+    "_shadowCastingMode": 0,
+    "_shadowReceivingMode": 1,
     "_shadowBias": 0,
     "_shadowNormalBias": 0,
     "_reflectionProbeId": -1,

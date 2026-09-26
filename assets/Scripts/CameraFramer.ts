@@ -25,6 +25,16 @@ export class CameraFramer extends Component {
     @property({ tooltip: 'Низ зоны поля — доля высоты экрана сверху (ниже начинается UI колоды)' })
     public boardBottom: number = 0.74;
 
+    @property({ tooltip: 'Зазор между полем и колодой — доля высоты экрана' })
+    public deckGap: number = 0.02;
+
+    /** Верх колоды (доля высоты экрана сверху). Задаёт QueueManager после раскладки колоды */
+    private deckTop: number | null = null;
+
+    public setDeckTop(fraction: number | null) {
+        this.deckTop = fraction;
+    }
+
     @property({ tooltip: 'Поля слева и справа — доля ширины экрана' })
     public marginX: number = 0.03;
 
@@ -65,14 +75,15 @@ export class CameraFramer extends Component {
         const h = (b.z1 - b.z0) * sinP;
 
         const fw = Math.max(0.1, 1 - 2 * this.marginX);
-        const fh = Math.max(0.1, this.boardBottom - this.boardTop);
+        const bottom = this.deckTop !== null ? Math.min(this.boardBottom, this.deckTop - this.deckGap) : this.boardBottom;
+        const fh = Math.max(0.1, bottom - this.boardTop);
         const orthoHeight = Math.max(w / (2 * aspect * fw), h / (2 * fh));
 
         cam.projection = Camera.ProjectionType.ORTHO;
         cam.orthoHeight = orthoHeight;
 
         // Центр поля должен оказаться в центре зоны [boardTop..boardBottom]
-        const zoneCenter = (this.boardTop + this.boardBottom) / 2;       // доля от верха
+        const zoneCenter = (this.boardTop + bottom) / 2;       // доля от верха
         const upShift = (0.5 - zoneCenter) * 2 * orthoHeight;             // на сколько поле выше центра экрана
         const cx = (b.x0 + b.x1) / 2;
         const cz = (b.z0 + b.z1) / 2;

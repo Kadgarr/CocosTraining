@@ -243,6 +243,7 @@ export class ConveyorBuilder extends Component {
             if (mr) {
                 const mat = this.pickMaterial(node.name);
                 if (mat) mr.setSharedMaterial(mat, 0);
+                mr.shadowCastingMode = MeshRenderer.ShadowCastingMode.OFF;
             }
             if (/Spawner_Disc_\d+/.test(node.name)) this.discs.push(node);
             node.children.forEach(walk);

@@ -1,0 +1,113 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "c4ed2f36-a19d-410c-891c-0313a5ff3682",
+  "files": [],
+  "subMetas": {
+    "10757": {
+      "importer": "gltf-mesh",
+      "uuid": "c4ed2f36-a19d-410c-891c-0313a5ff3682@10757",
+      "displayName": "",
+      "id": "10757",
+      "name": "Bunny_Shadow.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c55de": {
+      "importer": "gltf-mesh",
+      "uuid": "c4ed2f36-a19d-410c-891c-0313a5ff3682@c55de",
+      "displayName": "",
+      "id": "c55de",
+      "name": "Bunny_UI_Black.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 6392
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d50c3": {
+      "importer": "gltf-mesh",
+      "uuid": "c4ed2f36-a19d-410c-891c-0313a5ff3682@d50c3",
+      "displayName": "",
+      "id": "d50c3",
+      "name": "Bunny_UI_White.mesh",
+      "userData": {
+        "gltfIndex": 2,
+        "triangleCount": 6392
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5c4f8": {
+      "importer": "gltf-scene",
+      "uuid": "c4ed2f36-a19d-410c-891c-0313a5ff3682@5c4f8",
+      "displayName": "",
+      "id": "5c4f8",
+      "name": "Unit_Bunny_UI.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "c4ed2f36-a19d-410c-891c-0313a5ff3682@10757",
+        "c4ed2f36-a19d-410c-891c-0313a5ff3682@c55de",
+        "c4ed2f36-a19d-410c-891c-0313a5ff3682@d50c3"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "c4ed2f36-a19d-410c-891c-0313a5ff3682@5c4f8"
+      ]
+    }
+  }
+}

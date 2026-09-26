@@ -21,6 +21,19 @@ export class TrackManager extends Component {
     @property(Material)
     public blackMaterial: Material = null!;
 
+    @property({ type: [Material], tooltip: 'Скин белого кролика: [корпус, детали, блик]' })
+    public whiteSkin: Material[] = [];
+
+    @property({ type: [Material], tooltip: 'Скин черного кролика: [корпус, детали, блик]' })
+    public blackSkin: Material[] = [];
+
+    /** Материалы для юнита нужного цвета (скин кролика, если задан, иначе одиночный материал) */
+    public getSkin(colorType: ColorType): Material | Material[] {
+        const skin = colorType === ColorType.WHITE ? this.whiteSkin : this.blackSkin;
+        if (skin && skin.length > 0) return skin;
+        return colorType === ColorType.WHITE ? this.whiteMaterial : this.blackMaterial;
+    }
+
     @property
     public trackOffset: number = 0.9; // Отступ трека от края сетки
 
@@ -164,7 +177,7 @@ export class TrackManager extends Component {
     unitNode.setParent(this.node);
 
     const unitComp = unitNode.getComponent(UnitController);
-    const mat = colorType === ColorType.WHITE ? this.whiteMaterial : this.blackMaterial;
+    const mat = this.getSkin(colorType);
 
     if (unitComp) {
         unitComp.init(colorType, capacity, this.waypoints, 0, mat, this.gridManager, this);
