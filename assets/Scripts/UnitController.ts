@@ -1,6 +1,7 @@
-import { _decorator, Component, Node, Vec3, Label, MeshRenderer, Material } from 'cc';
+import { _decorator, Component, Node, Vec3, Label, MeshRenderer, Material, Color } from 'cc';
 import { ColorType, TrackSide } from './Types';
 import { TrackManager } from './TrackManager';
+import type { GridManager } from './GridManager';
 const { ccclass, property } = _decorator;
 
 export interface TrackPointInfo {
@@ -55,6 +56,11 @@ export class UnitController extends Component {
             this.meshRenderer.material = mat;
             }
 
+            // Цвет текста счетчика: белый для черных юнитов, черный для белых
+            if (this.capacityLabel) {
+                this.capacityLabel.color = colorType === ColorType.BLACK ? Color.WHITE : Color.BLACK;
+            }
+
             this.updateLabel();
         
             if (this.waypoints.length > 0) {
@@ -97,7 +103,11 @@ export class UnitController extends Component {
                 this.waypointsVisited++;
 
                 // Если юнит прошел полный круг (все вейпоинты)
-                if (this.waypointsVisited >= this.waypoints.length) {
+                const isOpenPath = this.trackManager ? this.trackManager.isOpenPath() : false;
+                const reachedEnd = isOpenPath
+                    ? this.currentTargetIndex >= this.waypoints.length - 1
+                    : this.waypointsVisited >= this.waypoints.length;
+                if (reachedEnd) {
                     this.onReachedEnd();
                     return;
                 }
@@ -138,6 +148,7 @@ export class UnitController extends Component {
         private checkBlockCollection(pointInfo: TrackPointInfo) {
 
             if (!this.gridManager || this.capacity <= 0) return;
+            if (pointInfo.gridIndex < 0) return; // точки на углах трека — без сбора
 
             // Берем текущую мировую позицию юнита для спавна снаряда
             const unitPos = this.node.worldPosition;

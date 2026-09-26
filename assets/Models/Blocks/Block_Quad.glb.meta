@@ -1,0 +1,75 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "1b63a5cb-2b93-403a-a789-22d09b60e089",
+  "files": [],
+  "subMetas": {
+    "22a78": {
+      "importer": "gltf-mesh",
+      "uuid": "1b63a5cb-2b93-403a-a789-22d09b60e089@22a78",
+      "displayName": "",
+      "id": "22a78",
+      "name": "Block_Quad.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "abd8f": {
+      "importer": "gltf-scene",
+      "uuid": "1b63a5cb-2b93-403a-a789-22d09b60e089@abd8f",
+      "displayName": "",
+      "id": "abd8f",
+      "name": "Block_Quad.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "1b63a5cb-2b93-403a-a789-22d09b60e089@22a78"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "1b63a5cb-2b93-403a-a789-22d09b60e089@abd8f"
+      ]
+    }
+  }
+}

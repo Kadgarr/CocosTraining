@@ -3,6 +3,7 @@ import { GridManager } from './GridManager';
 import { UnitController, TrackPointInfo } from './UnitController';
 import { ColorType, TrackSide } from './Types';
 import { GameManager } from './GameManager';
+import { ConveyorBuilder } from './ConveyorBuilder';
 const { ccclass, property } = _decorator;
 
 @ccclass('TrackManager')
@@ -21,7 +22,7 @@ export class TrackManager extends Component {
     public blackMaterial: Material = null!;
 
     @property
-    public trackOffset: number = 1.8; // Отступ трека от края сетки
+    public trackOffset: number = 0.9; // Отступ трека от края сетки
 
     @property
     public maxActiveUnits: number = 5;
@@ -29,11 +30,15 @@ export class TrackManager extends Component {
     @property(Label)
     public slotCounterLabel: Label = null!;
 
+    @property({ type: ConveyorBuilder, tooltip: 'Визуал конвейера. Если задан — путь юнитов повторяет форму ленты' })
+    public conveyor: ConveyorBuilder = null!;
+
     private waypoints: TrackPointInfo[] = [];
     private activeUnits: UnitController[] = [];
 
     start() {
         this.scheduleOnce(() => {
+        if (this.conveyor) this.conveyor.build(this.trackOffset);
         this.generateWaypoints();
         this.updateSlotUI();
         // spawnTestUnit() больше не вызываем!
@@ -45,6 +50,10 @@ export class TrackManager extends Component {
      */
     public generateWaypoints() {
         this.waypoints = [];
+        if (this.conveyor) {
+            this.generateConveyorWaypoints();
+            return;
+        }
 
         const rows = this.gridManager.rows;
         const cols = this.gridManager.cols;
@@ -97,6 +106,45 @@ export class TrackManager extends Component {
                 gridIndex: r
             });
         }
+    }
+
+    /** Путь незамкнутый (от спавнера до финиша), если используется конвейер */
+    public isOpenPath(): boolean {
+        return !!this.conveyor;
+    }
+
+    /**
+     * Путь по форме конвейера: прямые вдоль сетки + скругленные углы.
+     * На углах gridIndex = -1 (юнит там не собирает блоки).
+     */
+    private generateConveyorWaypoints() {
+        const L = this.conveyor.getLayout(this.trackOffset);
+        const cols = this.gridManager.cols, rows = this.gridManager.rows, sp = this.gridManager.spacing;
+        const R = L.R;
+        const push = (x: number, z: number, side: TrackSide, idx: number) =>
+            this.waypoints.push({ position: new Vec3(x, 0, z), side, gridIndex: idx });
+        // Дуга: центр (cx, cz), угол от a0 до a0-90° (поворот налево при виде сверху)
+        const arc = (cx: number, cz: number, a0: number, side: TrackSide) => {
+            const steps = 8;
+            for (let i = 0; i <= steps; i++) {
+                const a = (a0 - 90 * i / steps) * Math.PI / 180;
+                push(cx + R * Math.cos(a), cz + R * Math.sin(a), side, -1);
+            }
+        };
+
+        // Старт у спавнера
+        push(L.startX, L.maxZ, TrackSide.BOTTOM, -1);
+        // Низ: слева направо
+        for (let c = 0; c < cols; c++) push(-L.hx + c * sp, L.maxZ, TrackSide.BOTTOM, c);
+        arc(L.maxX - R, L.maxZ - R, 90, TrackSide.RIGHT);
+        // Право: снизу вверх
+        for (let r = rows - 1; r >= 0; r--) push(L.maxX, -L.hz + r * sp, TrackSide.RIGHT, r);
+        arc(L.maxX - R, L.minZ + R, 0, TrackSide.TOP);
+        // Верх: справа налево
+        for (let c = cols - 1; c >= 0; c--) push(-L.hx + c * sp, L.minZ, TrackSide.TOP, c);
+        arc(L.minX + R, L.minZ + R, -90, TrackSide.LEFT);
+        // Лево: сверху вниз, последний ряд = конец ленты у финиша
+        for (let r = 0; r < rows; r++) push(L.minX, -L.hz + r * sp, TrackSide.LEFT, r);
     }
 
     /**
@@ -184,6 +232,9 @@ export class TrackManager extends Component {
         if (this.slotCounterLabel) {
             const availableSlots = Math.max(0, this.maxActiveUnits - this.activeUnits.length);
             this.slotCounterLabel.string = `${availableSlots}/${this.maxActiveUnits}`;
+        }
+        if (this.conveyor) {
+            this.conveyor.setAvailableSlots(Math.max(0, this.maxActiveUnits - this.activeUnits.length));
         }
     }
         

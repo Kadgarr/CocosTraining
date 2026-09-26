@@ -1,0 +1,234 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94",
+  "files": [],
+  "subMetas": {
+    "33289": {
+      "importer": "gltf-mesh",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@33289",
+      "displayName": "",
+      "id": "33289",
+      "name": "Conveyor_Corner_Belt.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 32
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "36177": {
+      "importer": "gltf-material",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@36177",
+      "displayName": "",
+      "id": "36177",
+      "name": "M_ConveyorBelt.material",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "70574": {
+      "importer": "gltf-mesh",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@70574",
+      "displayName": "",
+      "id": "70574",
+      "name": "Conveyor_Corner_RailL.mesh",
+      "userData": {
+        "gltfIndex": 2,
+        "triangleCount": 512
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "9f944": {
+      "importer": "gltf-mesh",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@9f944",
+      "displayName": "",
+      "id": "9f944",
+      "name": "Conveyor_Corner_Base.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 96
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5c73e": {
+      "importer": "gltf-mesh",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@5c73e",
+      "displayName": "",
+      "id": "5c73e",
+      "name": "Conveyor_Corner_RailR.mesh",
+      "userData": {
+        "gltfIndex": 3,
+        "triangleCount": 512
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3d347": {
+      "importer": "gltf-embeded-image",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@3d347",
+      "displayName": "",
+      "id": "3d347",
+      "name": "T_ConveyorChevron.image",
+      "userData": {
+        "gltfIndex": 0,
+        "fixAlphaTransparencyArtifacts": true,
+        "hasAlpha": false,
+        "type": "texture"
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".json",
+        ".png"
+      ],
+      "subMetas": {}
+    },
+    "e39f7": {
+      "importer": "texture",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@e39f7",
+      "displayName": "",
+      "id": "e39f7",
+      "name": "UnnamedTexture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "linear",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@3d347"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "898a5": {
+      "importer": "gltf-material",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@898a5",
+      "displayName": "",
+      "id": "898a5",
+      "name": "M_ConveyorBase.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bd89b": {
+      "importer": "gltf-material",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@bd89b",
+      "displayName": "",
+      "id": "bd89b",
+      "name": "M_ConveyorRail.material",
+      "userData": {
+        "gltfIndex": 2
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "a7131": {
+      "importer": "gltf-scene",
+      "uuid": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@a7131",
+      "displayName": "",
+      "id": "a7131",
+      "name": "Conveyor_Corner.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "T_ConveyorChevron",
+        "uri": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@3d347"
+      }
+    ],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@9f944",
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@33289",
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@70574",
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@5c73e"
+      ],
+      "skeletons": [],
+      "textures": [
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@e39f7"
+      ],
+      "materials": [
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@898a5",
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@36177",
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@bd89b"
+      ],
+      "scenes": [
+        "aa85e5ce-e675-45c9-8ca5-221b20e96b94@a7131"
+      ]
+    }
+  }
+}

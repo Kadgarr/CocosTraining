@@ -1,0 +1,279 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4",
+  "files": [],
+  "subMetas": {
+    "143b3": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@143b3",
+      "displayName": "",
+      "id": "143b3",
+      "name": "End_Cap_L.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "2c43b": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@2c43b",
+      "displayName": "",
+      "id": "2c43b",
+      "name": "End_Cap_R.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b4ceb": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@b4ceb",
+      "displayName": "",
+      "id": "b4ceb",
+      "name": "End_Plate.mesh",
+      "userData": {
+        "gltfIndex": 2,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "dd404": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@dd404",
+      "displayName": "",
+      "id": "dd404",
+      "name": "End_Slat_1.mesh",
+      "userData": {
+        "gltfIndex": 3,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "8abe2": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@8abe2",
+      "displayName": "",
+      "id": "8abe2",
+      "name": "End_Slat_2.mesh",
+      "userData": {
+        "gltfIndex": 4,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "776cb": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@776cb",
+      "displayName": "",
+      "id": "776cb",
+      "name": "End_Slat_3.mesh",
+      "userData": {
+        "gltfIndex": 5,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "aa5ad": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@aa5ad",
+      "displayName": "",
+      "id": "aa5ad",
+      "name": "End_Slat_4.mesh",
+      "userData": {
+        "gltfIndex": 6,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d697b": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@d697b",
+      "displayName": "",
+      "id": "d697b",
+      "name": "End_Slat_5.mesh",
+      "userData": {
+        "gltfIndex": 7,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "2b57f": {
+      "importer": "gltf-mesh",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@2b57f",
+      "displayName": "",
+      "id": "2b57f",
+      "name": "End_Slat_6.mesh",
+      "userData": {
+        "gltfIndex": 8,
+        "triangleCount": 188
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bd89b": {
+      "importer": "gltf-material",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@bd89b",
+      "displayName": "",
+      "id": "bd89b",
+      "name": "M_ConveyorRail.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "898a5": {
+      "importer": "gltf-material",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@898a5",
+      "displayName": "",
+      "id": "898a5",
+      "name": "M_ConveyorBase.material",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "2d14c": {
+      "importer": "gltf-material",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@2d14c",
+      "displayName": "",
+      "id": "2d14c",
+      "name": "M_Grate.material",
+      "userData": {
+        "gltfIndex": 2
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e8be7": {
+      "importer": "gltf-scene",
+      "uuid": "65df8e97-dc68-4841-8780-dbe57857a9e4@e8be7",
+      "displayName": "",
+      "id": "e8be7",
+      "name": "Conveyor_End.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@143b3",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@2c43b",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@b4ceb",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@dd404",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@8abe2",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@776cb",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@aa5ad",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@d697b",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@2b57f"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@bd89b",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@898a5",
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@2d14c"
+      ],
+      "scenes": [
+        "65df8e97-dc68-4841-8780-dbe57857a9e4@e8be7"
+      ]
+    }
+  }
+}

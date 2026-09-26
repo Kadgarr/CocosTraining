@@ -61,6 +61,8 @@ export class GridManager extends Component {
 
                 // Расставляем по X и Z (Y = 0)
                 blockNode.setPosition(new Vec3(offsetX + c * this.spacing, 0, offsetZ + r * this.spacing));
+                // Спрайт столбика сделан под шаг сетки = 1, масштабируем под текущий шаг
+                blockNode.setScale(this.spacing, this.spacing, this.spacing);
 
                 const blockComp = blockNode.getComponent(BlockComponent);
 

@@ -1,0 +1,237 @@
+{
+  "ver": "2.3.14",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311",
+  "files": [],
+  "subMetas": {
+    "36177": {
+      "importer": "gltf-material",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@36177",
+      "displayName": "",
+      "id": "36177",
+      "name": "M_ConveyorBelt.material",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4269d": {
+      "importer": "gltf-mesh",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@4269d",
+      "displayName": "",
+      "id": "4269d",
+      "name": "Conveyor_Straight_Base.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 6
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "32b4c": {
+      "importer": "gltf-mesh",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@32b4c",
+      "displayName": "",
+      "id": "32b4c",
+      "name": "Conveyor_Straight_Belt.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 2
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4911d": {
+      "importer": "gltf-mesh",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@4911d",
+      "displayName": "",
+      "id": "4911d",
+      "name": "Conveyor_Straight_RailL.mesh",
+      "userData": {
+        "gltfIndex": 2,
+        "triangleCount": 32
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c40af": {
+      "importer": "gltf-mesh",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@c40af",
+      "displayName": "",
+      "id": "c40af",
+      "name": "Conveyor_Straight_RailR.mesh",
+      "userData": {
+        "gltfIndex": 3,
+        "triangleCount": 32
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3d347": {
+      "importer": "gltf-embeded-image",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@3d347",
+      "displayName": "",
+      "id": "3d347",
+      "name": "T_ConveyorChevron.image",
+      "userData": {
+        "gltfIndex": 0,
+        "fixAlphaTransparencyArtifacts": true,
+        "hasAlpha": false,
+        "type": "texture",
+        "compressSettings": {
+          "useCompressTexture": true
+        }
+      },
+      "ver": "1.0.3",
+      "imported": true,
+      "files": [
+        ".json",
+        ".png"
+      ],
+      "subMetas": {}
+    },
+    "e39f7": {
+      "importer": "texture",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@e39f7",
+      "displayName": "",
+      "id": "e39f7",
+      "name": "UnnamedTexture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "linear",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "1157a366-44f6-4a27-9e51-e5ba012ad311@3d347"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "898a5": {
+      "importer": "gltf-material",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@898a5",
+      "displayName": "",
+      "id": "898a5",
+      "name": "M_ConveyorBase.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bd89b": {
+      "importer": "gltf-material",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@bd89b",
+      "displayName": "",
+      "id": "bd89b",
+      "name": "M_ConveyorRail.material",
+      "userData": {
+        "gltfIndex": 2
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "55eff": {
+      "importer": "gltf-scene",
+      "uuid": "1157a366-44f6-4a27-9e51-e5ba012ad311@55eff",
+      "displayName": "",
+      "id": "55eff",
+      "name": "Conveyor_Straight.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "name": "T_ConveyorChevron",
+        "uri": "1157a366-44f6-4a27-9e51-e5ba012ad311@3d347"
+      }
+    ],
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@4269d",
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@32b4c",
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@4911d",
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@c40af"
+      ],
+      "skeletons": [],
+      "textures": [
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@e39f7"
+      ],
+      "materials": [
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@898a5",
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@36177",
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@bd89b"
+      ],
+      "scenes": [
+        "1157a366-44f6-4a27-9e51-e5ba012ad311@55eff"
+      ]
+    }
+  }
+}
