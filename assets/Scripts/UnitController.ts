@@ -43,6 +43,21 @@ export class UnitController extends Component {
     private trackManager: TrackManager | null = null;
     private waypointsVisited: number = 0; // Счетчик пройденных точек трека
 
+    // Перелёт из кнопки колоды на конвейер
+    private pendingLaunch: { from: Vec3, scale: number, duration: number, arc: number } | null = null;
+    private launching = false;
+    private launchT = 0;
+    private readonly launchFrom = new Vec3();
+    private readonly launchTo = new Vec3();
+
+    /**
+     * Вызывается до init: юнит стартует в точке fromWorld (под кнопкой колоды) в масштабе scale
+     * и за duration секунд по дуге высотой arc перелетает на старт конвейера.
+     */
+    public prepareLaunch(fromWorld: Vec3, scale: number, duration: number, arc: number) {
+        this.pendingLaunch = { from: fromWorld.clone(), scale, duration: Math.max(0.05, duration), arc };
+    }
+
     /**
      * Инициализация юнита при спавне на трек
      */
@@ -81,19 +96,61 @@ export class UnitController extends Component {
                     this.labelWorldRot.set(this.capacityLabel.node.worldRotation);
                 }
                 this.faceGrid(0, true);
-        
-                // Проверяем сбор сразу на стартовой точке
-                this.checkBlockCollection(startPointInfo);
 
-                // Если у юнита осталась емкость — взводим движение к следующей точке
-                if (this.capacity > 0) {
+                if (this.pendingLaunch) this.startLaunch();
+                else this.enterTrack(startPointInfo);
+            }
+        }
+
+        /** Юнит встал на старт конвейера: сбор на стартовой точке и начало движения */
+        private enterTrack(startPointInfo: TrackPointInfo) {
+            this.checkBlockCollection(startPointInfo);
+            // Если у юнита осталась емкость — взводим движение к следующей точке
+            if (this.capacity > 0) {
                 this.currentTargetIndex = (this.currentTargetIndex + 1) % this.waypoints.length;
-                    this.isMoving = true;
-                }
+                this.isMoving = true;
+            }
+        }
+
+        private startLaunch() {
+            const L = this.pendingLaunch!;
+            this.launchTo.set(this.node.position);
+            if (this.node.parent) this.node.parent.inverseTransformPoint(this.launchFrom, L.from);
+            else this.launchFrom.set(L.from);
+            this.launchT = 0;
+            this.launching = true;
+            this.node.setPosition(this.launchFrom);
+            this.node.setScale(L.scale, L.scale, L.scale);
+            // В кнопке кролик смотрит на зрителя — оттуда и начинаем разворот к сетке
+            this.node.setWorldRotation(new Quat());
+            this.faceGrid(0, false);
+        }
+
+        private updateLaunch(dt: number) {
+            const L = this.pendingLaunch!;
+            this.launchT = Math.min(1, this.launchT + dt / L.duration);
+            const t = this.launchT;
+            const e = 1 - (1 - t) * (1 - t);                  // быстро срывается с кнопки, мягко садится
+            Vec3.lerp(this.tmpVec, this.launchFrom, this.launchTo, e);
+            this.tmpVec.y += L.arc * 4 * t * (1 - t);           // дуга прыжка
+            this.node.setPosition(this.tmpVec);
+            const s = L.scale + (1 - L.scale) * e;
+            this.node.setScale(s, s, s);
+            this.faceGrid(dt, false);
+
+            if (t >= 1) {
+                this.launching = false;
+                this.pendingLaunch = null;
+                this.node.setPosition(this.launchTo);
+                this.node.setScale(1, 1, 1);
+                this.faceGrid(0, false);
+                this.playShotAnimation();                      // «пружинка» при приземлении
+                this.enterTrack(this.waypoints[this.currentTargetIndex]);
             }
         }
 
         update(dt: number) {
+            if (this.launching) { this.updateLaunch(dt); return; }
             if (!this.isMoving || this.waypoints.length === 0) return;
             this.faceGrid(dt, false);
 
@@ -178,8 +235,9 @@ export class UnitController extends Component {
             if (this.capacityLabel) {
                 const ln = this.capacityLabel.node;
                 ln.setWorldRotation(this.labelWorldRot);
-                Vec3.add(this.tmpVec, this.node.worldPosition, this.labelWorldOffset);
-                ln.setWorldPosition(this.tmpVec);
+                const k = this.node.scale.x;   // во время перелёта кролик крупнее — число держим на груди
+                const w = this.node.worldPosition, o = this.labelWorldOffset;
+                ln.setWorldPosition(w.x + o.x * k, w.y + o.y * k, w.z + o.z * k);
             }
         }
 

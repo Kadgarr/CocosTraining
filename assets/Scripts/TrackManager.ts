@@ -46,6 +46,12 @@ export class TrackManager extends Component {
     @property({ type: ConveyorBuilder, tooltip: 'Визуал конвейера. Если задан — путь юнитов повторяет форму ленты' })
     public conveyor: ConveyorBuilder = null!;
 
+    @property({ tooltip: 'Длительность перелёта юнита из кнопки колоды на конвейер, сек' })
+    public launchDuration: number = 0.45;
+
+    @property({ tooltip: 'Высота дуги перелёта из колоды на конвейер (в метрах мира)' })
+    public launchArcHeight: number = 1.2;
+
     private waypoints: TrackPointInfo[] = [];
     private activeUnits: UnitController[] = [];
 
@@ -170,7 +176,7 @@ export class TrackManager extends Component {
     /**
      * Спавн юнита на трек
      */
-    public spawnUnit(colorType: ColorType, capacity: number): UnitController | null {
+    public spawnUnit(colorType: ColorType, capacity: number, launchFrom?: Vec3, launchScale: number = 1): UnitController | null {
     if (!this.canSpawnUnit()) return null;
 
     const unitNode = instantiate(this.unitPrefab);
@@ -180,6 +186,8 @@ export class TrackManager extends Component {
     const mat = this.getSkin(colorType);
 
     if (unitComp) {
+        // Если юнит вылетает из кнопки колоды — сначала перелёт, потом движение по конвейеру
+        if (launchFrom) unitComp.prepareLaunch(launchFrom, launchScale, this.launchDuration, this.launchArcHeight);
         unitComp.init(colorType, capacity, this.waypoints, 0, mat, this.gridManager, this);
         
         unitNode.on('unit-destroyed', (unit: UnitController) => {

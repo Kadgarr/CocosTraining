@@ -28,11 +28,13 @@ export class UnitSlot extends Component {
     private columnIndex: number = -1;
     private isInteractive: boolean = false;
     private queueManager: QueueManager = null!;
+    private colorType: ColorType = ColorType.WHITE;
 
     public init(data: UnitData, colIndex: number, interactive: boolean, manager: QueueManager) {
         this.columnIndex = colIndex;
         this.isInteractive = interactive;
         this.queueManager = manager;
+        this.colorType = data.colorType;
 
         if (this.capacityLabel) {
             this.capacityLabel.string = data.capacity.toString();
@@ -80,6 +82,17 @@ export class UnitSlot extends Component {
         }
         const ui = this.getComponent(UITransform);
         if (ui) ui.setContentSize(0.8 * modelScale, 1.25 * modelScale);
+    }
+
+    /**
+     * Включает/выключает кликабельность уже созданной кнопки (при сдвиге колонки).
+     * restyle — обновить прозрачность числа (передний юнит — непрозрачное).
+     */
+    public setInteractive(v: boolean, restyle: boolean = true) {
+        this.node.off(Node.EventType.TOUCH_END, this.onClick, this);
+        this.isInteractive = v;
+        if (v) this.node.on(Node.EventType.TOUCH_END, this.onClick, this);
+        if (restyle) UnitSkin.styleLabel(this.capacityLabel, this.colorType, v ? 255 : 110);
     }
 
     private onClick() {
