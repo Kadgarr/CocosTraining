@@ -1,8 +1,25 @@
-import { _decorator, Component, Vec3, tween } from 'cc';
+import { _decorator, Component, Vec3, tween, MeshRenderer, Mesh, utils, primitives } from 'cc';
 const { ccclass } = _decorator;
 
 @ccclass('Projectile')
 export class Projectile extends Component {
+
+    /**
+     * Общий для всех снарядов лёгкий меш сферы. Генерируется в коде, чтобы в сборку
+     * не попадал встроенный primitives.fbx (~87 КБ ради одной сферы).
+     */
+    private static sharedMesh: Mesh | null = null;
+
+    onLoad() {
+        const mr = this.getComponent(MeshRenderer);
+        if (mr && !mr.mesh) {
+            if (!Projectile.sharedMesh) {
+                Projectile.sharedMesh = utils.MeshUtils.createMesh(
+                    primitives.sphere(0.5, { segments: 12 }));
+            }
+            mr.mesh = Projectile.sharedMesh;
+        }
+    }
 
     /**
      * Запуск снаряда из начальной точки в целевую

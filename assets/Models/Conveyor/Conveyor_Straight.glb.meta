@@ -130,7 +130,7 @@
         "mipfilter": "linear",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "1157a366-44f6-4a27-9e51-e5ba012ad311@3d347"
+        "imageUuidOrDatabaseUri": "1f53e631-f5d7-496d-9fb0-a09362aa4820"
       },
       "ver": "1.0.22",
       "imported": true,
@@ -192,6 +192,7 @@
     "imageMetas": [
       {
         "name": "T_ConveyorChevron",
+        "remap": "1f53e631-f5d7-496d-9fb0-a09362aa4820",
         "uri": "1157a366-44f6-4a27-9e51-e5ba012ad311@3d347"
       }
     ],

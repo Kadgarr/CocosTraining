@@ -4,24 +4,128 @@
   "_objFlags": 0,
   "_native": "",
   "_effectAsset": {
-    "__uuid__": "c8f66d17-351a-48da-a12c-0212d28575c4"
+    "__uuid__": "9b20a514-6cc3-49de-b216-b6b863046249"
   },
   "_techIdx": 0,
   "_defines": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
     {}
   ],
   "_states": [],
   "_props": [
+    {},
     {
       "mainColor": {
         "__type__": "cc.Color",
-        "r": 90,
-        "g": 88,
-        "b": 160,
+        "r": 68,
+        "g": 77,
+        "b": 152,
         "a": 255
       },
-      "roughness": 0.45,
-      "metallic": 0
+      "shadeColor1": {
+        "__type__": "cc.Color",
+        "r": 54,
+        "g": 62,
+        "b": 122,
+        "a": 255
+      },
+      "shadeColor2": {
+        "__type__": "cc.Color",
+        "r": 45,
+        "g": 51,
+        "b": 100,
+        "a": 255
+      },
+      "specular": {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 30
+      },
+      "baseStep": 0.55,
+      "baseFeather": 0.2,
+      "shadeStep": 0.25,
+      "shadeFeather": 0.2,
+      "shadowCover": 0.5
+    },
+    {
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 68,
+        "g": 77,
+        "b": 152,
+        "a": 255
+      },
+      "shadeColor1": {
+        "__type__": "cc.Color",
+        "r": 54,
+        "g": 62,
+        "b": 122,
+        "a": 255
+      },
+      "shadeColor2": {
+        "__type__": "cc.Color",
+        "r": 45,
+        "g": 51,
+        "b": 100,
+        "a": 255
+      },
+      "specular": {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 30
+      },
+      "baseStep": 0.55,
+      "baseFeather": 0.2,
+      "shadeStep": 0.25,
+      "shadeFeather": 0.2,
+      "shadowCover": 0.5
+    },
+    {},
+    {},
+    {},
+    {
+      "mainColor": {
+        "__type__": "cc.Color",
+        "r": 68,
+        "g": 77,
+        "b": 152,
+        "a": 255
+      },
+      "shadeColor1": {
+        "__type__": "cc.Color",
+        "r": 54,
+        "g": 62,
+        "b": 122,
+        "a": 255
+      },
+      "shadeColor2": {
+        "__type__": "cc.Color",
+        "r": 45,
+        "g": 51,
+        "b": 100,
+        "a": 255
+      },
+      "specular": {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 30
+      },
+      "baseStep": 0.55,
+      "baseFeather": 0.2,
+      "shadeStep": 0.25,
+      "shadeFeather": 0.2,
+      "shadowCover": 0.5
     }
   ]
 }

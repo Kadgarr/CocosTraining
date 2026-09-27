@@ -73,7 +73,7 @@
     },
     "_materials": [
       {
-        "__uuid__": "f0dc8cc3-1e55-4d12-b33d-b1a55736b8e0",
+        "__uuid__": "620b6bf3-0369-4560-837f-2a2c00b73c26",
         "__expectedType__": "cc.Material"
       }
     ],
@@ -81,7 +81,10 @@
     "bakeSettings": {
       "__id__": 4
     },
-    "_mesh": null,
+    "_mesh": {
+      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@17020",
+      "__expectedType__": "cc.Mesh"
+    },
     "_shadowCastingMode": 0,
     "_shadowReceivingMode": 1,
     "_shadowBias": 0,

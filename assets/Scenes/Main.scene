@@ -196,9 +196,9 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -0.08000000000000007,
+      "x": -2.4250000000000003,
       "y": 37.587704831436334,
-      "z": 15.684025039242599
+      "z": 17.105805733026752
     },
     "_lrot": {
       "__type__": "cc.Quat",
@@ -237,7 +237,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 8.78486997635934,
+    "_orthoHeight": 2.8221420774255055,
     "_near": 1,
     "_far": 1000,
     "_color": {
@@ -307,19 +307,19 @@
       "__id__": 10
     },
     "straightPrefab": {
-      "__uuid__": "1157a366-44f6-4a27-9e51-e5ba012ad311@55eff",
+      "__uuid__": "1c409c5d-6fb7-4be1-b0d7-d8ac45b16366",
       "__expectedType__": "cc.Prefab"
     },
     "cornerPrefab": {
-      "__uuid__": "aa85e5ce-e675-45c9-8ca5-221b20e96b94@a7131",
+      "__uuid__": "0348a7a3-62d9-4ef3-a09f-3cd53adfe9e7",
       "__expectedType__": "cc.Prefab"
     },
     "spawnerPrefab": {
-      "__uuid__": "45c95169-1bba-4a4a-bf47-9bfd7c486635@9fd93",
+      "__uuid__": "6d6f5515-8ad0-4f54-b882-f2a06ba13653",
       "__expectedType__": "cc.Prefab"
     },
     "endPrefab": {
-      "__uuid__": "65df8e97-dc68-4841-8780-dbe57857a9e4@e8be7",
+      "__uuid__": "8e762b72-1d27-409e-aac2-383482af6cd8",
       "__expectedType__": "cc.Prefab"
     },
     "beltMaterial": {
@@ -522,14 +522,8 @@
       "__uuid__": "24c09b61-2106-4218-8c6a-8d57a47979c9",
       "__expectedType__": "cc.Prefab"
     },
-    "whiteMaterial": {
-      "__uuid__": "9f36efb1-7649-4379-8b99-b0c7262b0ba4",
-      "__expectedType__": "cc.Material"
-    },
-    "blackMaterial": {
-      "__uuid__": "9aadf10f-df69-4603-8d16-bd811333b785",
-      "__expectedType__": "cc.Material"
-    },
+    "whiteMaterial": null,
+    "blackMaterial": null,
     "whiteSkin": [
       {
         "__uuid__": "0f290d6d-3820-48f6-accc-52a81c746ed0",
@@ -896,7 +890,7 @@
     "_priority": 1073741824,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 367.43935309973045,
+    "_orthoHeight": 360,
     "_near": 1,
     "_far": 2000,
     "_color": {
@@ -3827,21 +3821,12 @@
   {
     "__type__": "cc.SkyboxInfo",
     "_envLightingType": 0,
-    "_envmapHDR": {
-      "__uuid__": "d032ac98-05e1-4090-88bb-eb640dcb5fc1@b47c0",
-      "__expectedType__": "cc.TextureCube"
-    },
-    "_envmap": {
-      "__uuid__": "d032ac98-05e1-4090-88bb-eb640dcb5fc1@b47c0",
-      "__expectedType__": "cc.TextureCube"
-    },
-    "_envmapLDR": {
-      "__uuid__": "6f01cf7f-81bf-4a7e-bd5d-0afc19696480@b47c0",
-      "__expectedType__": "cc.TextureCube"
-    },
+    "_envmapHDR": null,
+    "_envmap": null,
+    "_envmapLDR": null,
     "_diffuseMapHDR": null,
     "_diffuseMapLDR": null,
-    "_enabled": true,
+    "_enabled": false,
     "_useHDR": true,
     "_editableMaterial": null,
     "_reflectionHDR": null,
