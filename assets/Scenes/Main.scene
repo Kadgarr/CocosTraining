@@ -3297,8 +3297,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 95.15234375,
-      "height": 54.4
+      "width": 97.15234375,
+      "height": 56.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3319,10 +3319,10 @@
     "__prefab": null,
     "_alignFlags": 12,
     "_target": null,
-    "_left": 119.6796875,
+    "_left": 118.6796875,
     "_right": 751.0952711454927,
     "_top": -25.2,
-    "_bottom": -302,
+    "_bottom": -303,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,

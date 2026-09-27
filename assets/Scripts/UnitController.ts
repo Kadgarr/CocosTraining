@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec3, Label, MeshRenderer, Material, Color } from 'cc';
+import { _decorator, Component, Node, Vec3, Quat, Label, MeshRenderer, Material, Color, Animation } from 'cc';
 import { ColorType, TrackSide } from './Types';
 import { TrackManager } from './TrackManager';
 import { UnitSkin } from './UnitSkin';
@@ -23,7 +23,17 @@ export class UnitController extends Component {
     @property
     public speed: number = 5.0;
 
+    @property({ tooltip: 'Скорость поворота к сетке (чем больше, тем резче)' })
+    public turnSpeed: number = 12;
+
     public colorType: ColorType = ColorType.WHITE;
+
+    // Число над кроликом не вращается вместе с ним: храним его положение и поворот в мире
+    private labelWorldOffset = new Vec3();
+    private labelWorldRot = new Quat();
+    private readonly tmpQuat = new Quat();
+    private readonly tmpVec = new Vec3();
+    private shotAnim: Animation | null = null;
     public capacity: number = 20;
 
     private waypoints: TrackPointInfo[] = [];
@@ -64,6 +74,13 @@ export class UnitController extends Component {
             if (this.waypoints.length > 0) {
                 const startPointInfo = this.waypoints[this.currentTargetIndex];
                 this.node.setPosition(startPointInfo.position);
+
+                // Запоминаем положение числа (узел ещё не повёрнут) и сразу разворачиваем кролика к сетке
+                if (this.capacityLabel) {
+                    Vec3.subtract(this.labelWorldOffset, this.capacityLabel.node.worldPosition, this.node.worldPosition);
+                    this.labelWorldRot.set(this.capacityLabel.node.worldRotation);
+                }
+                this.faceGrid(0, true);
         
                 // Проверяем сбор сразу на стартовой точке
                 this.checkBlockCollection(startPointInfo);
@@ -78,6 +95,7 @@ export class UnitController extends Component {
 
         update(dt: number) {
             if (!this.isMoving || this.waypoints.length === 0) return;
+            this.faceGrid(dt, false);
 
             const targetInfo = this.waypoints[this.currentTargetIndex];
             const targetPos = targetInfo.position;
@@ -119,6 +137,52 @@ export class UnitController extends Component {
             }
         }
 
+        /** Проигрывает клип выстрела с начала (перезапуск при частых выстрелах) */
+        private playShotAnimation() {
+            if (!this.shotAnim) this.shotAnim = this.getComponent(Animation);
+            const anim = this.shotAnim;
+            if (!anim || !anim.defaultClip) return;
+            anim.stop();
+            anim.play(anim.defaultClip.name);
+        }
+
+        /**
+         * Поворачивает кролика грудью (+Z модели) к ближайшей точке сетки.
+         * На прямых участках — строго на сетку, на углах конвейера — плавно по диагонали.
+         */
+        private faceGrid(dt: number, instant: boolean) {
+            const gm = this.gridManager;
+            if (gm) {
+                const o = gm.node.worldPosition;
+                const hx = ((gm.cols - 1) * gm.spacing) / 2;
+                const hz = ((gm.rows - 1) * gm.spacing) / 2;
+                const p = this.node.worldPosition;
+                const cx = Math.min(Math.max(p.x, o.x - hx), o.x + hx);
+                const cz = Math.min(Math.max(p.z, o.z - hz), o.z + hz);
+                const dx = cx - p.x, dz = cz - p.z;
+                if (dx * dx + dz * dz > 1e-6) {
+                    // +180°: модель развёрнута так, чтобы к сетке смотрела нужная сторона кролика
+                    const yaw = Math.atan2(dx, dz) * 180 / Math.PI + 180;
+                    Quat.fromEuler(this.tmpQuat, 0, yaw, 0);
+                    if (instant) {
+                        this.node.setWorldRotation(this.tmpQuat);
+                    } else {
+                        const k = 1 - Math.exp(-this.turnSpeed * dt);
+                        const cur = this.node.worldRotation.clone();
+                        Quat.slerp(cur, cur, this.tmpQuat, k);
+                        this.node.setWorldRotation(cur);
+                    }
+                }
+            }
+            // Число всегда смотрит в камеру и стоит над центром кролика
+            if (this.capacityLabel) {
+                const ln = this.capacityLabel.node;
+                ln.setWorldRotation(this.labelWorldRot);
+                Vec3.add(this.tmpVec, this.node.worldPosition, this.labelWorldOffset);
+                ln.setWorldPosition(this.tmpVec);
+            }
+        }
+
         /**
          * Получить информацию о текущем отрезке/стороне для проверки сбора блоков
          */
@@ -151,6 +215,7 @@ export class UnitController extends Component {
             // Берем текущую мировую позицию юнита для спавна снаряда
             const unitPos = this.node.worldPosition;
             while (this.capacity > 0 && this.gridManager.tryConsumeOuterBlock(pointInfo.side, pointInfo.gridIndex, this.colorType, unitPos)) {
+                this.playShotAnimation();   // выстрел: «пульс» юнита (клип UnitShot)
                 const isEmpty = this.consumeCapacity(1);
                 if (isEmpty) {
                     this.onCapacityDepleted();
